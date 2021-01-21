@@ -2,17 +2,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ihumane/app.ihumane.net/
-    - export DEPLOYPATH2=/home/ihumane/idnnigeria.ihumane.net/
-    - export DEPLOYPATH3=/home/ihumane/dreamcity.ihumane.net/
-    - export DEPLOYPATH4=/home/ihumane/asosavings.ihumane.net/
-    - export DEPLOYPATH5=/home/ihumane/nigcomsat.ihumane.net/
-    - export DEPLOYPATH6=/home/ihumane/jrbsolar.ihumane.net/
-    - export DEPLOYPATH7=/home/ihumane/demo.ihumane.net/
+    - export DEPLOYPATH=/home/ihumane/connexxiongroup.ihumane.net/
     - /bin/cp -R * $DEPLOYPATH
-    - /bin/cp -R * $DEPLOYPATH2
-    - /bin/cp -R * $DEPLOYPATH3
-    - /bin/cp -R * $DEPLOYPATH4
-    - /bin/cp -R * $DEPLOYPATH5
-    - /bin/cp -R * $DEPLOYPATH6
-    - /bin/cp -R * $DEPLOYPATH7
