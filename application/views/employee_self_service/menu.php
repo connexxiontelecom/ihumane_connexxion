@@ -34,6 +34,17 @@
 
 				</ul>
 			</li>
+			
+			<li class="nav-item dropdown <?php echo $this->uri->segment(1) == 'new_task' || $this->uri->segment(1) == 'view_tasks' || $this->uri->segment(1) == 'assign_tasks' || $this->uri->segment(1) == 'my_tasks'  ? 'active':'' ?>">
+				<a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i><span>Tasks/Todos</span></a>
+				<ul class="dropdown-menu">
+					<li class="nav-item <?php echo $this->uri->segment(1) == 'new_tasks'  ? 'active':'' ?>"><a href="<?php echo base_url('new_task'); ?>" class="nav-link">New Task</a></li>
+					<li class="nav-item <?php echo $this->uri->segment(1) == 'my_tasks' ? 'active':'' ?>"><a href="<?php echo base_url('my_tasks'); ?>" class="nav-link">My Tasks</a></li>
+					<li class="nav-item <?php echo $this->uri->segment(1) == 'assigned_tasks' ? 'active':'' ?>"><a href="<?php echo base_url('assigned_tasks'); ?>" class="nav-link">Assigned Tasks</a></li>
+					
+				
+				</ul>
+			</li>
 			<li class="nav-item dropdown <?php echo $this->uri->segment(1) == 'my_queries' || $this->uri->segment(1) == 'view_my_query' || $this->uri->segment(1) == 'my_memos' || $this->uri->segment(1) == 'my_specific_memos' || $this->uri->segment(1) == 'my_chat' ? 'active':'' ?>">
 				<a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-comments"></i><span>Communications</span></a>
 				<ul class="dropdown-menu">

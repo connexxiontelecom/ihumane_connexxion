@@ -1,3 +1,6 @@
+<?php $CI =& get_instance();
+	$CI->load->model('biometric');
+?>
 <script src="<?php echo base_url(); ?>assets/modules/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/push_notification.js"></script>
 <nav class="navbar navbar-expand-lg main-navbar">
@@ -20,6 +23,34 @@
           <li><a href="https://ihumane.net" target="_blank" class="dropdown-item">Visit Site</a></li>
           <li><a href="mailto:support@ihumane.net" class="dropdown-item">Contact Support</a></li>
         </ul>
+	
+		 <?php $date = date('Y-m-d', time());
+		 
+		
+		  $check_login = $CI->biometric->check_clock_in($employee_id, $date);
+		  if(empty($check_login)): ?>
+			<li class="nav-item dropdown dropdown-list-toggle">
+				<form method="post" action="<?php echo site_url('employee_clockin') ?>">
+					<input type="hidden" name="employee_id" value="<?php echo $employee_id ?>">
+					
+					<button type="submit"  class="btn btn-primary">Clock In</button>
+				</form>
+			 
+			</li>
+		<?php else: ?>
+			
+			
+			
+			<li class="nav-item dropdown dropdown-list-toggle">
+				<form method="post" action="<?php echo site_url('employee_clockout') ?>">
+					<input type="hidden" name="employee_id" value="<?php echo $employee_id ?>">
+			
+					<button type="submit" class="btn btn-primary">Clock out</button>
+				</form>
+			
+			</li>
+			
+			<?php endif;   ?>
       </li>
 		</ul>
 	</div>
@@ -94,8 +125,12 @@
 <script>
 	$(document).ready(function () {
 
-		setInterval(timestamp, 5000);
+		setInterval(timestamp, 1000);
+		var check = 0;
+		var checks = 1;
 		function timestamp() {
+			
+			
 			var employee_id = <?php echo $employee->employee_id; ?>;
 			$.ajax({
 				type: "POST",
@@ -104,6 +139,8 @@
 				success: function (data) {
 
 					var data = JSON.parse(data);
+					
+					
 					if(data.length > 0) {
 
 						var i = data.length - 1;
@@ -113,9 +150,11 @@
 						var now = new Date();
 
 						var seconds = moment(now).diff(moment(datum), 'seconds');
-
-
-						if (seconds < 10) {
+						
+						check ++;
+						// if (seconds < 10) {
+						//console.log(check);
+						if((checks - check)%30 == 0){
 
 							var notification_id = data[0].notification_id;
 							Push.create("iHumane", {
@@ -128,7 +167,9 @@
 								}
 							});
 							$.playSound("<?php echo base_url('assets/notification/insight.mp3'); ?>");
-
+							//console.log('i throe0');
+							
+							
 						}
 					}
 
