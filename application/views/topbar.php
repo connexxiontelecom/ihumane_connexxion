@@ -115,8 +115,9 @@
 
 <script>
 	$(document).ready(function () {
-
-
+		
+		var check = 0;
+		var checks = 1;
 		setInterval(timestamp, 5000);
 		function timestamp() {
 
@@ -140,8 +141,9 @@
 
 						var seconds = moment(now).diff(moment(datum), 'seconds');
 
-
-						if (seconds < 10) {
+						check++;
+						// if (seconds < 10) {
+						if((checks - check)%30 == 0){
 
 							var notification_id = data[0].notification_id;
 							Push.create("iHumane", {
