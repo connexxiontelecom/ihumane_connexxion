@@ -126,6 +126,83 @@
           <div class="row">
             <div class="col-lg-6 col-md-6 col-12 col-sm-12">
               <div class="card" style="border-radius: 12px;">
+				  <div class="card-header">
+					  <h4 class="d-inline">Tasks</h4>
+					  <div class="card-header-action">
+						  <a href="<?php echo site_url('assigned_tasks') ?>" class="btn btn-primary">View All</a>
+					  </div>
+				  </div>
+				  <div class="card-body">
+					  <ul class="list-unstyled list-unstyled-border">
+						  <?php $i = 0; foreach ($tasks as $task):
+							  if($i< 2):
+								  ?>
+								  <li class="media">
+									  <img class="mr-3 rounded-circle" width="50" src="<?php echo base_url(); ?>assets/img/avatar/avatar-4.png" alt="avatar">
+									  <div class="media-body">
+							
+							
+										  <?php if($task->task_status == 0): ?>
+											  <div class="badge badge-pill badge-danger mb-1 float-right">Not Finished</div>
+										  <?php endif; ?>
+							
+										  <?php if($task->task_status == 1): ?>
+											  <div class="badge badge-pill badge-warning mb-1 float-right">Finished</div>
+										  <?php endif; ?>
+							
+										  <h6 class="media-title"><a href="<?php echo site_url('view_task').'/'.$task->task_id; ?>"><?=$task->task_title; ?></a></h6>
+										  <div class="text-small text-muted"><?php $employee = $CI->employees->get_employee($task->task_supervisor_id); echo $employee->employee_last_name." ".$employee->employee_first_name;  ?>  <div class="bullet"></div> <span class="text-primary"><?=$task->task_start_date.' : '.$task->task_end_date; ?></span>
+											  <div class="bullet"></div>
+											  <?php if($task->task_priority == 1): ?>
+												  <div class="badge badge-pill badge-danger mb-1">High</div>
+											  <?php endif; ?>
+								
+											  <?php if($task->task_priority == 2): ?>
+												  <div class="badge badge-pill badge-warning mb-1">Medium</div>
+											  <?php endif; ?>
+								
+											  <?php if($task->task_priority == 3): ?>
+												  <div class="badge badge-pill badge-success mb-1">low</div>
+											  <?php  endif; ?></div>
+									  </div>
+								  </li>
+							  <?php endif; $i++; endforeach; ?>
+			
+						  <?php $i = 0; foreach ($taskss as $task):
+							  if($i< 2):?>
+								  <li class="media">
+									  <img class="mr-3 rounded-circle" width="50" src="<?php echo base_url(); ?>assets/img/avatar/avatar-4.png" alt="avatar">
+									  <div class="media-body">
+							
+							
+										  <?php if($task->task_status == 0): ?>
+											  <div class="badge badge-pill badge-danger mb-1 float-right">Not Finished</div>
+										  <?php endif; ?>
+							
+										  <?php if($task->task_status == 1): ?>
+											  <div class="badge badge-pill badge-warning mb-1 float-right">Finished</div>
+										  <?php endif; ?>
+							
+										  <h6 class="media-title"><a href="<?php echo site_url('view_task').'/'.$task->task_id; ?>"><?=$task->task_title; ?></a></h6>
+										  <div class="text-small text-muted"><?php $employee = $CI->employees->get_employee($task->task_supervisor_id); echo $employee->employee_last_name." ".$employee->employee_first_name;  ?>  <div class="bullet"></div> <span class="text-primary"><?=$task->task_start_date.' : '.$task->task_end_date; ?></span>
+											  <div class="bullet"></div>
+											  <?php if($task->task_priority == 1): ?>
+												  <div class="badge badge-pill badge-danger mb-1">High</div>
+											  <?php endif; ?>
+								
+											  <?php if($task->task_priority == 2): ?>
+												  <div class="badge badge-pill badge-warning mb-1">Medium</div>
+											  <?php endif; ?>
+								
+											  <?php if($task->task_priority == 3): ?>
+												  <div class="badge badge-pill badge-success mb-1">low</div>
+											  <?php endif; ?></div>
+									  </div>
+								  </li>
+							  <?php endif; $i++; endforeach; ?>
+		
+					  </ul>
+				  </div>
                 <div class="card-body">
                   <div class="summary">
                     <div class="summary-info">
@@ -184,7 +261,11 @@
                     </div>
                   </div>
                 </div>
+				 
               </div>
+	
+	
+				
             </div>
             <div class="col-lg-6 col-md-6 col-12 col-sm-12">
               <div class="row">
