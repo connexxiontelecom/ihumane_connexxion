@@ -194,7 +194,7 @@
 			$this->db->from('employee_leave');
 			$this->db->join('employee', 'employee.employee_id = employee_leave.leave_employee_id');
 			$this->db->join('leave_type', 'leave_type.leave_id = employee_leave.leave_leave_type');
-			//$this->db->order_by('transfer_date', 'DESC');
+			$this->db->order_by('employee_leave.employee_leave_id', 'DESC');
 			return $this->db->get()->result();
 			
 		}
